@@ -214,11 +214,6 @@ def main():
             albumentations.CLAHE(clip_limit=0.03, tile_grid_size=(8, 8), p=0.2),
             albumentations.Perspective((0.05,0.09), p=0.3),
             albumentations.CoarseDropout(max_holes=4, max_height=8, max_width=8, fill_value=0, always_apply=False, p=0.3),
-            albumentations.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5), p=1.0),
-            albumentations.OneOf([
-                               albumentations.MotionBlur(p=1),
-                               albumentations.OpticalDistortion(p=1),            
-            ], p=0.1),
     ])
     test_transform = albumentations.Compose([
         albumentations.LongestMaxSize(max_size=1536,p=1),
@@ -330,7 +325,7 @@ def main():
                     
                 print('ep {} train loss : {:.4f} valid loss : {:.4f} f1_mean : {:.4f} roc_mean : {:.4f}'.format(ep, losses.avg, ret['loss'], ret['f1_mean'], ret['roc_mean']), flush=True)
                 print('ep {} train loss : {:.4f} valid loss : {:.4f} f1_max : {:.4f} roc_max : {:.4f}'.format(ep, losses.avg, ret['loss'], ret['f1_max'], ret['roc_max']), flush=True)
-                    #print('pred_min : {:.4f} pred_max {:.4f} pred_mean {:4f}'.format(np.min(ret['pred']), np.max(ret['pred']), np.median(ret['pred'])))
+                
                 print('mean', ret['pf1_mean'], ret['th_mean'])
                 print('max', ret['pf1_max'], ret['th_max'])
                 target_pf = max(ret['pf1_mean'], ret['pf1_max'])
