@@ -32,10 +32,7 @@
             albumentations.CLAHE(clip_limit=0.03, tile_grid_size=(8, 8), p=0.2),
             albumentations.Perspective((0.05,0.09), p=0.3),
             albumentations.CoarseDropout(max_holes=4, max_height=8, max_width=8, fill_value=0, always_apply=False, p=0.3),
-            albumentations.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5), p=1.0),
-            albumentations.OneOf([
-                               albumentations.MotionBlur(p=1),
-                               albumentations.OpticalDistortion(p=1),            
+            albumentations.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5), p=1.0),          
             ], p=0.1),  
 ```
 
